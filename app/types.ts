@@ -6,3 +6,5 @@ export type MainStackParamList = {
 export type AuthStackParamList = {
   Login: undefined;
 };
+
+export default {};
