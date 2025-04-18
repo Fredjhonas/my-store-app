@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { StatusBar } from 'expo-status-bar';
+import AuthStack from './auth/_layout';
 import MainStack from './main/_layout';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -27,9 +28,11 @@ export default function RootLayout() {
     return null;
   }
 
+  const isLoggedIn = false;
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <MainStack />
+      {isLoggedIn ? <MainStack /> : <AuthStack />}
       <StatusBar style="auto" />
     </ThemeProvider>
   );
