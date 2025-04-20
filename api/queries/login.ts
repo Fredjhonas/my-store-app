@@ -1,3 +1,5 @@
+import { useAppDispatch } from '@/store/hooks';
+import { setUser } from '@/store/userSlice';
 import { useMutation } from '@tanstack/react-query';
 import client from '../client';
 
@@ -7,6 +9,8 @@ type LoginParams = {
 };
 
 export const useAuthLogin = () => {
+  const dispatch = useAppDispatch();
+
   const handleLogin = async ({ username, password }: LoginParams) => {
     return client
       .post('auth/login', {
@@ -14,8 +18,7 @@ export const useAuthLogin = () => {
         password,
       })
       .then((res) => {
-        //TODO: Save the token in local storage or context
-        console.log('🚀 ~ res:', res);
+        dispatch(setUser(res.data));
       })
       .catch((error) => {
         throw error.response.data;
