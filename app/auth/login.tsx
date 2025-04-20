@@ -1,3 +1,4 @@
+import { useAuthLogin } from '@/api/queries/login';
 import LoginForm from '@/components/forms/LoginForm';
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -10,19 +11,21 @@ export default function LoginScreen() {
     username: '',
     password: '',
   });
-  const [loading, setLoading] = useState(false);
+  const { loginRequest, isLoginPending } = useAuthLogin();
 
   const handleChange = (key: string, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleSubmit = () => {
-    setLoading(true);
-    // Simulate a login request
-    setTimeout(() => {
-      setLoading(false);
-      // Handle successful login here
-    }, 2000);
+    if (isLoginPending) return;
+
+    loginRequest(formData, {
+      onError: (error) => {
+        // TODO: show error message
+        console.log('Login failed:', error);
+      },
+    });
   };
 
   return (
@@ -38,7 +41,7 @@ export default function LoginScreen() {
         formData={formData}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        loading={loading}
+        loading={isLoginPending}
       />
     </KeyboardAvoidingView>
   );

@@ -4,7 +4,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
+import queryClient from '@/api/queryClient';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
 import AuthStack from './auth/_layout';
 import MainStack from './main/_layout';
@@ -31,9 +33,11 @@ export default function RootLayout() {
   const isLoggedIn = false;
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      {isLoggedIn ? <MainStack /> : <AuthStack />}
-      <StatusBar style="dark" />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        {isLoggedIn ? <MainStack /> : <AuthStack />}
+        <StatusBar style="dark" />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
