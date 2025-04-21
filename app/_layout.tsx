@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import queryClient from '@/api/queryClient';
+import AlertModal from '@/components/modal/AlertModal';
+import { useAlert } from '@/hooks/useAlert';
 import { useAuth } from '@/hooks/useAuth';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { store } from '@/store';
@@ -23,6 +25,7 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
   const { isAuthenticated, isLoading } = useAuth();
+  const { alert, visible, hideAlert } = useAlert();
 
   useEffect(() => {
     if (loaded && !isLoading) SplashScreen.hideAsync();
@@ -30,11 +33,18 @@ export default function RootLayout() {
 
   if (!loaded) return null;
 
+  const alertProps = {
+    visible,
+    onClose: hideAlert,
+    ...alert,
+  };
+
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           {isAuthenticated ? <MainStack /> : <AuthStack />}
+          <AlertModal {...alertProps} />
           <StatusBar style="dark" />
         </ThemeProvider>
       </QueryClientProvider>

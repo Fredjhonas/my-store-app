@@ -1,10 +1,15 @@
 import { useAuth } from '@/hooks/useAuth';
 import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import client from '../client';
 
 type LoginParams = {
   username: string;
   password: string;
+};
+
+type LoginResponse = {
+  token: string;
 };
 
 export const useAuthLogin = () => {
@@ -16,13 +21,16 @@ export const useAuthLogin = () => {
         username,
         password,
       })
-      .then((res) => saveSession(res.data.token))
+      .then((res) => {
+        saveSession(res.data.token);
+        return { token: res.data.token };
+      })
       .catch((error) => {
-        throw error.response.data;
+        throw error.response;
       });
   };
 
-  const { isPending, mutate } = useMutation({
+  const { isPending, mutate } = useMutation<LoginResponse, AxiosError, LoginParams>({
     mutationFn: handleLogin,
   });
 

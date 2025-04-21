@@ -3,6 +3,8 @@ import LoginForm from '@/components/forms/LoginForm';
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Colors } from '@/constants/Colors';
+import { UNEXPECTED_ERROR, USER_OR_PASSWORD_INCORRECT } from '@/constants/Messages';
+import { useAlert } from '@/hooks/useAlert';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, ViewStyle } from 'react-native';
 
@@ -12,6 +14,7 @@ export default function LoginScreen() {
     password: '',
   });
   const { loginRequest, isLoginPending } = useAuthLogin();
+  const { showAlert } = useAlert();
 
   const handleChange = (key: string, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -22,8 +25,13 @@ export default function LoginScreen() {
 
     loginRequest(formData, {
       onError: (error) => {
-        // TODO: show error message
-        console.log('Login failed:', error);
+        const errorMessage = error.status === 401 ? USER_OR_PASSWORD_INCORRECT : UNEXPECTED_ERROR;
+
+        showAlert({
+          title: 'Oops!',
+          message: errorMessage,
+          type: 'warning',
+        });
       },
     });
   };
