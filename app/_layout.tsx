@@ -1,13 +1,13 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import queryClient from '@/api/queryClient';
+import { useAuth } from '@/hooks/useAuth';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { store } from '@/store';
-import { selectIsLoggedIn } from '@/store/userSlice';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
@@ -22,35 +22,19 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    if (loaded && !isLoading) SplashScreen.hideAsync();
+  }, [loaded, isLoading]);
 
-  useEffect(() => {
-    const subscription = store.subscribe(() => {
-      const state = store.getState();
-      const loggedIn = selectIsLoggedIn(state);
-      setIsLoggedIn(loggedIn);
-    });
-
-    return () => {
-      subscription();
-    };
-  }, []);
-
-  if (!loaded) {
-    return null;
-  }
+  if (!loaded) return null;
 
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          {isLoggedIn ? <MainStack /> : <AuthStack />}
+          {isAuthenticated ? <MainStack /> : <AuthStack />}
           <StatusBar style="dark" />
         </ThemeProvider>
       </QueryClientProvider>

@@ -1,5 +1,4 @@
-import { useAppDispatch } from '@/store/hooks';
-import { setUser } from '@/store/userSlice';
+import { useAuth } from '@/hooks/useAuth';
 import { useMutation } from '@tanstack/react-query';
 import client from '../client';
 
@@ -9,7 +8,7 @@ type LoginParams = {
 };
 
 export const useAuthLogin = () => {
-  const dispatch = useAppDispatch();
+  const { saveSession } = useAuth();
 
   const handleLogin = async ({ username, password }: LoginParams) => {
     return client
@@ -17,9 +16,7 @@ export const useAuthLogin = () => {
         username,
         password,
       })
-      .then((res) => {
-        dispatch(setUser(res.data));
-      })
+      .then((res) => saveSession(res.data.token))
       .catch((error) => {
         throw error.response.data;
       });
