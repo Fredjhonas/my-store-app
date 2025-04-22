@@ -16,6 +16,7 @@ const MAPPING = {
   'storefront.fill': 'store',
   'eye.fill': 'visibility',
   'eye.slash.fill': 'visibility-off',
+  'bag.fill': 'shopping-bag',
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],

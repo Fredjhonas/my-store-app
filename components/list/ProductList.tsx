@@ -1,15 +1,8 @@
 import { EMPTY_PRODUCT_LIST } from '@/constants/Messages';
 import { Product } from '@/models/ProductModel';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  ImageStyle,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Dimensions, FlatList, ImageStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { ThemedText } from '../ThemedText';
+import ImageLoader from '../ui/ImageLoader';
 
 type ProductListProps = {
   products: Product[];
@@ -41,7 +34,7 @@ const ProductList = ({
   const renderItem = ({ item }: { item: Product }) => {
     return (
       <TouchableOpacity style={$itemStyle} onPress={() => onPressItem(item.id)}>
-        <Image source={{ uri: item.image }} style={$imageStyle} resizeMode="contain" />
+        <ImageLoader imageUrl={item.image} style={$imageStyle} />
         <ThemedText
           style={{ fontWeight: 'bold', fontSize: 16 }}
           numberOfLines={2}

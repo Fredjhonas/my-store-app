@@ -165,21 +165,46 @@ exports[`ProductList Component matches snapshot 1`] = `
             }
           }
         >
-          <Image
-            resizeMode="contain"
-            source={
-              {
-                "uri": "image1.png",
+          <View>
+            <View
+              style={
+                [
+                  {
+                    "borderRadius": 10,
+                    "height": 266.8,
+                    "width": "100%",
+                  },
+                  {
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                  },
+                ]
               }
-            }
-            style={
-              {
-                "borderRadius": 10,
-                "height": 266.8,
-                "width": "100%",
+            >
+              <ActivityIndicator
+                color="#0a7ea4"
+                size="large"
+              />
+            </View>
+            <Image
+              onError={[Function]}
+              onLoadEnd={[Function]}
+              onLoadStart={[Function]}
+              resizeMode="contain"
+              source={
+                {
+                  "uri": "image1.png",
+                }
               }
-            }
-          />
+              style={
+                {
+                  "borderRadius": 10,
+                  "height": 266.8,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>
           <Text
             ellipsizeMode="tail"
             numberOfLines={2}
@@ -267,21 +292,46 @@ exports[`ProductList Component matches snapshot 1`] = `
             }
           }
         >
-          <Image
-            resizeMode="contain"
-            source={
-              {
-                "uri": "image2.png",
+          <View>
+            <View
+              style={
+                [
+                  {
+                    "borderRadius": 10,
+                    "height": 266.8,
+                    "width": "100%",
+                  },
+                  {
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                  },
+                ]
               }
-            }
-            style={
-              {
-                "borderRadius": 10,
-                "height": 266.8,
-                "width": "100%",
+            >
+              <ActivityIndicator
+                color="#0a7ea4"
+                size="large"
+              />
+            </View>
+            <Image
+              onError={[Function]}
+              onLoadEnd={[Function]}
+              onLoadStart={[Function]}
+              resizeMode="contain"
+              source={
+                {
+                  "uri": "image2.png",
+                }
               }
-            }
-          />
+              style={
+                {
+                  "borderRadius": 10,
+                  "height": 266.8,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>
           <Text
             ellipsizeMode="tail"
             numberOfLines={2}
