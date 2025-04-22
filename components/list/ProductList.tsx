@@ -56,6 +56,7 @@ const ProductList = ({
 
   return (
     <FlatList
+      testID="product-list"
       data={products}
       keyExtractor={(item) => item.id.toString()}
       renderItem={renderItem}
