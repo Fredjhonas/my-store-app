@@ -11,7 +11,7 @@ type LoginFormProps = {
     password: string;
   };
   onChange: (key: string, value: string) => void;
-  onSubmit: () => void;
+  onSubmit: (formData: { username: string; password: string }) => void;
   loading: boolean;
 };
 
@@ -58,7 +58,7 @@ const LoginForm = ({ formData, onChange, onSubmit, loading }: LoginFormProps) =>
       username: false,
       password: false,
     });
-    onSubmit();
+    onSubmit(formData);
   };
 
   return (
@@ -74,6 +74,7 @@ const LoginForm = ({ formData, onChange, onSubmit, loading }: LoginFormProps) =>
             onSubmitEditing={handleSubmit}
             autoCapitalize="none"
             value={formData[field.key]}
+            accessibilityLabel={field.key}
             placeholderTextColor={Colors.light.placeholder}
             onBlur={() => {
               if (!formData[field.key]) {
@@ -98,8 +99,10 @@ const LoginForm = ({ formData, onChange, onSubmit, loading }: LoginFormProps) =>
             }
             showError={showError[field.key]}
             error={
-              showError
-                ? 'Por favor, complete el campo ' + field.label.toLocaleLowerCase()
+              showError[field.key]
+                ? field.key === 'username'
+                  ? 'El usuario es requerido'
+                  : 'La contraseña es requerida'
                 : undefined
             }
           />
@@ -108,6 +111,9 @@ const LoginForm = ({ formData, onChange, onSubmit, loading }: LoginFormProps) =>
       <TouchableOpacity
         style={!hasUsername || !hasPassword ? $disabledButton : $button}
         onPress={handleSubmit}
+        accessibilityRole="button"
+        accessibilityLabel="login"
+        disabled={loading}
       >
         {/* Loading indicator */}
         {loading ? (

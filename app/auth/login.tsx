@@ -20,7 +20,7 @@ export default function LoginScreen() {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (formData: { username: string; password: string }) => {
     if (isLoginPending) return;
 
     loginRequest(formData, {

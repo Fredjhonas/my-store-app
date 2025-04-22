@@ -10,6 +10,7 @@ type TextFieldProps = TextInputProps & {
   onSubmit?: () => void;
   showError?: boolean;
   error?: string;
+  accessibilityLabel?: string;
 };
 
 const TextField = ({ label, leftIcon, rightIcon, showError, error, ...props }: TextFieldProps) => {
@@ -22,7 +23,11 @@ const TextField = ({ label, leftIcon, rightIcon, showError, error, ...props }: T
       </View>
       <View style={$inputContainer}>
         {leftIcon}
-        <TextInput style={$input} {...props} />
+        <TextInput 
+          style={$input} 
+          accessibilityLabel={props.accessibilityLabel || label}
+          {...props} 
+        />
         {rightIcon}
       </View>
       {/* Error message  */}
