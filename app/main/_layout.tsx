@@ -2,7 +2,8 @@ import { ThemedText } from '@/components/ThemedText';
 import { Colors } from '@/constants/Colors';
 import { useAuth } from '@/hooks/useAuth';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { Image, View, ViewStyle } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import HomeScreen from '.';
 import { MainStackParamList } from '../types';
 import DetailScreen from './detail';
@@ -53,8 +54,10 @@ export default function MainStack() {
 }
 
 const $buttonStyle: ViewStyle = {
-  paddingHorizontal: 15,
-  borderWidth: 1,
+  paddingHorizontal: 25,
+  height: 30,
+  justifyContent: 'center',
+  borderWidth: 0.5,
   borderRadius: 5,
   borderColor: Colors.dark.error,
 };

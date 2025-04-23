@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "my-store-app",
+    "name": "My Store",
     "slug": "my-store-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/playstore-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.mystoreapp"
     },
     "web": {
       "bundler": "metro",

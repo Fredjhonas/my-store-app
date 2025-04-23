@@ -11,6 +11,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { store } from '@/store';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 import AuthStack from './auth/_layout';
 import MainStack from './main/_layout';
@@ -41,11 +42,13 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider value={DefaultTheme}>
-          {isAuthenticated ? <MainStack /> : <AuthStack />}
-          <AlertModal {...alertProps} />
-          <StatusBar style="dark" />
-        </ThemeProvider>
+        <GestureHandlerRootView>
+          <ThemeProvider value={DefaultTheme}>
+            {isAuthenticated ? <MainStack /> : <AuthStack />}
+            <AlertModal {...alertProps} />
+            <StatusBar style="dark" />
+          </ThemeProvider>
+        </GestureHandlerRootView>
       </QueryClientProvider>
     </Provider>
   );
