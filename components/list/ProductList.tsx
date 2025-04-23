@@ -76,7 +76,7 @@ const $itemStyle: ViewStyle = {
   padding: 20,
   backgroundColor: 'white',
   margin: 10,
-  borderRadius: 10,
+  borderRadius: 16,
   width: '45%',
   gap: 10,
 };

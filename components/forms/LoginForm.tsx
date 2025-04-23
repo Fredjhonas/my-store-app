@@ -119,7 +119,7 @@ const LoginForm = ({ formData, onChange, onSubmit, loading }: LoginFormProps) =>
         {loading ? (
           <ActivityIndicator size="small" color="white" />
         ) : (
-          <ThemedText type="default" lightColor="white">
+          <ThemedText type="default" style={{ color: 'white' }}>
             Ingresar
           </ThemedText>
         )}

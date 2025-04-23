@@ -2,7 +2,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { Colors } from '@/constants/Colors';
 import { useAuth } from '@/hooks/useAuth';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button } from 'react-native';
+import { TouchableOpacity, ViewStyle } from 'react-native';
 import HomeScreen from '.';
 import { MainStackParamList } from '../types';
 import DetailScreen from './detail';
@@ -21,7 +21,11 @@ export default function MainStack() {
           headerTitle: '',
           headerLeft: () => <ThemedText type="subtitle">My Store</ThemedText>,
           headerRight: () => (
-            <Button title="Salir" color={Colors.light.error} onPress={closeSession} />
+            <TouchableOpacity onPress={closeSession} style={$buttonStyle}>
+              <ThemedText type="link" style={{ color: Colors.dark.error }}>
+                Salir
+              </ThemedText>
+            </TouchableOpacity>
           ),
         }}
       />
@@ -31,10 +35,18 @@ export default function MainStack() {
         options={{
           headerTitle: 'Detalles',
           headerBackVisible: true,
-          headerBackTitle: 'Volver',
+          headerBackButtonDisplayMode: 'minimal',
+          headerTitleAlign: 'center',
           headerTintColor: '#333',
         }}
       />
     </Stack.Navigator>
   );
 }
+
+const $buttonStyle: ViewStyle = {
+  paddingHorizontal: 15,
+  borderWidth: 1,
+  borderRadius: 5,
+  borderColor: Colors.dark.error,
+};

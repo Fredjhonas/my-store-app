@@ -31,21 +31,23 @@ const ImageLoader = ({ imageUrl, style = {} }: ImageLoaderProps) => {
   }
 
   return (
-    <View>
+    <View style={[$centerStyle, style as ViewStyle]}>
       {loading && !error && (
-        <View style={[$centerStyle, style as ViewStyle]}>
+        <View style={{ ...$centerStyle, position: 'absolute' }}>
           <ActivityIndicator size="large" color={Colors.light.tint} />
         </View>
       )}
-
       {error ? (
-        <View style={[$centerStyle, style as ViewStyle]}>
+        <View style={$centerStyle}>
           <IconSymbol name="bag.fill" size={100} color={Colors.light.tint} />
         </View>
       ) : (
         <Image
           source={{ uri: imageUrl }}
-          style={style as ImageStyle}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
           resizeMode="contain"
           onLoad={handleLoad}
           onError={handleError}

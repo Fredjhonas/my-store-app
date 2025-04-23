@@ -19,7 +19,7 @@ export const Colors = {
     disable: '#D3D3D3',
   },
   dark: {
-    text: '#ECEDEE',
+    text: '#11181C',
     background: '#151718',
     tint: tintColorDark,
     icon: '#9BA1A6',
