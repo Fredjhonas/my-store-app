@@ -8,20 +8,38 @@ type ImageLoaderProps = {
   style?: ImageStyle | ViewStyle;
 };
 
-const ImageLoader = ({ imageUrl, style }: ImageLoaderProps) => {
+const ImageLoader = ({ imageUrl, style = {} }: ImageLoaderProps) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const handleLoad = () => {
+    setLoading(false);
+    setError(false);
+  };
+
+  const handleError = () => {
+    setLoading(false);
+    setError(true);
+  };
+
+  if (!imageUrl) {
+    return (
+      <View style={[$centerStyle, style as ViewStyle]}>
+        <IconSymbol name="bag.fill" size={100} color={Colors.light.tint} />
+      </View>
+    );
+  }
+
   return (
     <View>
-      {loading && (
-        <View style={[style as ViewStyle, $centerStyle]}>
+      {loading && !error && (
+        <View style={[$centerStyle, style as ViewStyle]}>
           <ActivityIndicator size="large" color={Colors.light.tint} />
         </View>
       )}
 
       {error ? (
-        <View style={[style as ViewStyle, $centerStyle]}>
+        <View style={[$centerStyle, style as ViewStyle]}>
           <IconSymbol name="bag.fill" size={100} color={Colors.light.tint} />
         </View>
       ) : (
@@ -29,15 +47,10 @@ const ImageLoader = ({ imageUrl, style }: ImageLoaderProps) => {
           source={{ uri: imageUrl }}
           style={style as ImageStyle}
           resizeMode="contain"
-          onLoadEnd={() => setLoading(false)}
-          onError={() => {
-            setLoading(false);
-            setError(true);
-          }}
-          onLoadStart={() => {
-            setLoading(true);
-            setError(false);
-          }}
+          onLoad={handleLoad}
+          onError={handleError}
+          accessibilityLabel="Loaded image"
+          accessibilityRole="image"
         />
       )}
     </View>

@@ -1,5 +1,6 @@
 import { EMPTY_PRODUCT_LIST } from '@/constants/Messages';
 import { Product } from '@/models/ProductModel';
+import { memo } from 'react';
 import { Dimensions, FlatList, ImageStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { ThemedText } from '../ThemedText';
 import ImageLoader from '../ui/ImageLoader';
@@ -69,7 +70,7 @@ const ProductList = ({
   );
 };
 
-export default ProductList;
+export default memo(ProductList);
 
 const $itemStyle: ViewStyle = {
   padding: 20,

@@ -2,15 +2,18 @@ import { useGetProducts } from '@/api/queries/product-list';
 import ProductList from '@/components/list/ProductList';
 import { Colors } from '@/constants/Colors';
 import { useAppSelector } from '@/store/hooks';
-import { useFocusEffect } from 'expo-router';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useFocusEffect, useNavigation } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
+import { MainStackParamList } from '../types';
 
 export default function HomeScreen() {
   const { getProducts, isGetProductsPending } = useGetProducts();
   const [isRefreshing, setIsRefreshing] = useState(false);
   const products = useAppSelector((state) => state.productList.products);
   const isEmpty = products.length === 0 && !isGetProductsPending;
+  const navigation = useNavigation<NativeStackNavigationProp<MainStackParamList>>();
 
   useFocusEffect(
     useCallback(() => {
@@ -26,7 +29,9 @@ export default function HomeScreen() {
   };
 
   const handleGoToDetail = (productId: number) => {
-    // Navigate to product detail screen
+    navigation.navigate('Detail', {
+      id: productId.toString(),
+    });
   };
 
   if (isGetProductsPending && !isRefreshing) {
