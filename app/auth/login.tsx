@@ -40,6 +40,7 @@ export default function LoginScreen() {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={$container}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
     >
       <IconSymbol name="storefront.fill" size={60} color={Colors.light.tint} />
       <ThemedText type="title" darkColor="black">

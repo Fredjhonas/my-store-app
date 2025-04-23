@@ -156,7 +156,7 @@ exports[`ProductList Component matches snapshot 1`] = `
           style={
             {
               "backgroundColor": "white",
-              "borderRadius": 10,
+              "borderRadius": 16,
               "gap": 10,
               "margin": 10,
               "opacity": 1,
@@ -165,20 +165,28 @@ exports[`ProductList Component matches snapshot 1`] = `
             }
           }
         >
-          <View>
+          <View
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                },
+                {
+                  "borderRadius": 10,
+                  "height": 266.8,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
             <View
               style={
-                [
-                  {
-                    "borderRadius": 10,
-                    "height": 266.8,
-                    "width": "100%",
-                  },
-                  {
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                  },
-                ]
+                {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "position": "absolute",
+                }
               }
             >
               <ActivityIndicator
@@ -187,9 +195,10 @@ exports[`ProductList Component matches snapshot 1`] = `
               />
             </View>
             <Image
+              accessibilityLabel="Loaded image"
+              accessibilityRole="image"
               onError={[Function]}
-              onLoadEnd={[Function]}
-              onLoadStart={[Function]}
+              onLoad={[Function]}
               resizeMode="contain"
               source={
                 {
@@ -198,8 +207,7 @@ exports[`ProductList Component matches snapshot 1`] = `
               }
               style={
                 {
-                  "borderRadius": 10,
-                  "height": 266.8,
+                  "height": "100%",
                   "width": "100%",
                 }
               }
@@ -283,7 +291,7 @@ exports[`ProductList Component matches snapshot 1`] = `
           style={
             {
               "backgroundColor": "white",
-              "borderRadius": 10,
+              "borderRadius": 16,
               "gap": 10,
               "margin": 10,
               "opacity": 1,
@@ -292,20 +300,28 @@ exports[`ProductList Component matches snapshot 1`] = `
             }
           }
         >
-          <View>
+          <View
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                },
+                {
+                  "borderRadius": 10,
+                  "height": 266.8,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
             <View
               style={
-                [
-                  {
-                    "borderRadius": 10,
-                    "height": 266.8,
-                    "width": "100%",
-                  },
-                  {
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                  },
-                ]
+                {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "position": "absolute",
+                }
               }
             >
               <ActivityIndicator
@@ -314,9 +330,10 @@ exports[`ProductList Component matches snapshot 1`] = `
               />
             </View>
             <Image
+              accessibilityLabel="Loaded image"
+              accessibilityRole="image"
               onError={[Function]}
-              onLoadEnd={[Function]}
-              onLoadStart={[Function]}
+              onLoad={[Function]}
               resizeMode="contain"
               source={
                 {
@@ -325,8 +342,7 @@ exports[`ProductList Component matches snapshot 1`] = `
               }
               style={
                 {
-                  "borderRadius": 10,
-                  "height": 266.8,
+                  "height": "100%",
                   "width": "100%",
                 }
               }

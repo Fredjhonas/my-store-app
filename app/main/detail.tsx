@@ -2,6 +2,7 @@ import { useGetProductDetail } from '@/api/queries/product-detail';
 import { ThemedText } from '@/components/ThemedText';
 import ImageLoader from '@/components/ui/ImageLoader';
 import { Colors } from '@/constants/Colors';
+import { ERROR_GET_PRODUCT_DETAIL } from '@/constants/Messages';
 import { useAlert } from '@/hooks/useAlert';
 import { Product } from '@/models/ProductModel';
 import { useAppSelector } from '@/store/hooks';
@@ -34,7 +35,7 @@ const DetailScreen = () => {
   const showErrorMessage = () => {
     showAlert({
       title: 'Oops!',
-      message: 'Error al obtener los detalles del producto',
+      message: ERROR_GET_PRODUCT_DETAIL,
       type: 'warning',
     });
   };
