@@ -1,12 +1,11 @@
 import { useAuthLogin } from '@/api/queries/login';
 import LoginForm from '@/components/forms/LoginForm';
 import { ThemedText } from '@/components/ThemedText';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Colors } from '@/constants/Colors';
 import { UNEXPECTED_ERROR, USER_OR_PASSWORD_INCORRECT } from '@/constants/Messages';
 import { useAlert } from '@/hooks/useAlert';
 import { useState } from 'react';
-import { KeyboardAvoidingView, Platform, ViewStyle } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, ViewStyle } from 'react-native';
 
 export default function LoginScreen() {
   const [formData, setFormData] = useState({
@@ -42,7 +41,7 @@ export default function LoginScreen() {
       style={$container}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
     >
-      <IconSymbol name="storefront.fill" size={60} color={Colors.light.tint} />
+      <Image source={require('@/assets/images/my-store.png')} style={{ width: 100, height: 100 }} />
       <ThemedText type="title" darkColor="black">
         Ingresar a My Store
       </ThemedText>

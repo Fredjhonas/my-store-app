@@ -1,5 +1,5 @@
 import { store } from '@/store';
-import { selectIsLoggedIn, setUser } from '@/store/userSlice';
+import { clearUser, selectIsLoggedIn, setUser } from '@/store/userSlice';
 import * as SecureStore from 'expo-secure-store';
 import { useEffect, useState } from 'react';
 
@@ -45,7 +45,7 @@ export const useAuth = () => {
   const closeSession = async () => {
     await SecureStore.deleteItemAsync(SECURE_TOKEN_KEY);
     setIsAuthenticated(false);
-    store.dispatch(setUser(null));
+    store.dispatch(clearUser());
   };
 
   useEffect(() => {

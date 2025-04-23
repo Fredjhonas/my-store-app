@@ -2,7 +2,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { Colors } from '@/constants/Colors';
 import { useAuth } from '@/hooks/useAuth';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { TouchableOpacity, ViewStyle } from 'react-native';
+import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
 import HomeScreen from '.';
 import { MainStackParamList } from '../types';
 import DetailScreen from './detail';
@@ -19,7 +19,15 @@ export default function MainStack() {
         component={HomeScreen}
         options={{
           headerTitle: '',
-          headerLeft: () => <ThemedText type="subtitle">My Store</ThemedText>,
+          headerLeft: () => (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Image
+                source={require('@/assets/images/my-store.png')}
+                style={{ width: 40, height: 40 }}
+              />
+              <ThemedText type="subtitle">My Store</ThemedText>
+            </View>
+          ),
           headerRight: () => (
             <TouchableOpacity onPress={closeSession} style={$buttonStyle}>
               <ThemedText type="link" style={{ color: Colors.dark.error }}>
